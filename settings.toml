@@ -1,0 +1,17 @@
+[GENERAL]
+NUM_THREADS = 8
+SEED = 666
+
+[SPLIT]
+DATA_DIR = "/path/to/dataset_directory"
+SENSOR = "s2"
+TILE_SHAPE = (256, 256)
+IMG_BANDS_IDX = [0, 1, 2, 3, 4, 5]
+DEM = true
+OUT_DIR = "/path/to/output_directory"
+
+[AUGMENT]
+IMG_DIR = "/path/to/image_directory"
+MSK_DIR = "/path/to/mask_directory"
+NAUGS = 1
+DEM_IN_BANDS = true
