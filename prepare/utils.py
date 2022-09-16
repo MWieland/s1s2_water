@@ -3,39 +3,14 @@ import numpy as np
 import random
 
 
-def split_samples(samples_file, img_key, msk_key, split_key, split_value, exclude_substr=[], seed=0):
-    """Splits samples into train, val and test subsets based on samples geojson file."""
-    with open(samples_file) as f:
-        splits = json.load(f)
-        img_splits = [
-            split["properties"][img_key] + ".tif"
-            for split in splits["features"]
-            if split_value in split["properties"][split_key]
-            and split["properties"][img_key] is not None
-            and not any(ids in split["properties"][img_key] for ids in exclude_substr)
-        ]
-        msk_splits = [
-            split["properties"][msk_key] + ".tif"
-            for split in splits["features"]
-            if split_value in split["properties"][split_key]
-            and split["properties"][msk_key] is not None
-            and not any(ids in split["properties"][img_key] for ids in exclude_substr)
-        ]
-
-    # random shuffle images and masks equally
-    z = list(zip(img_splits, msk_splits))
-    random.seed(seed)
-    random.shuffle(z)
-    img_splits, msk_splits = zip(*z)
-
-    return img_splits, msk_splits
-
-
 def scale_min_max(array, min, max):
     """Scales an image from range [min, max] to [0,1] with fixed values for min and max.
-    Example values for 8bit image: min=0, max=255; 11bit image: min=0, max=2047; 16bit image: min=0, max=65535
-    NOTE: Check the original image radiometric resolution to choose the correct values, NOT the dtype. For Ikonos for
-    example dtype is uint16 but actual radiometric resolution is only 11bit, which requires min=0, max=2047."""
+    
+    :param array: array to which the rolling window is applied (array_like).
+    :param min: minimum value (int).
+    :param max: maximum value (int).
+    :returns: Scaled array (array_like).
+    """
     bands = []
     for i in range(array.shape[2]):
         bands.append(((np.clip(array[:, :, i], min, max).astype(np.float32) - min) / (max - min + 1e-8)))
@@ -43,7 +18,7 @@ def scale_min_max(array, min, max):
 
 
 def rolling_window(array, window=(0,), asteps=None, wsteps=None, axes=None, toend=True):
-    """This method applies a rolling (moving) window to an ndarray.
+    """Applies a rolling (moving) window to an ndarray.
 
     :param array: array to which the rolling window is applied (array_like).
     :param window: Either a single integer to create a window of only the last axis or a
@@ -63,44 +38,6 @@ def rolling_window(array, window=(0,), asteps=None, wsteps=None, axes=None, toen
     :returns: a view on `array` which is smaller to fit the windows and has windows added
         dimensions (0s not counting), ie. every point of `array` is an array of size
         window. (ndarray).
-
-    Examples: \n
-    >>> a = np.arange(9).reshape(3,3)
-    >>> rolling_window(a, (2,2))
-    array([[[[0, 1],
-             [3, 4]],
-            [[1, 2],
-             [4, 5]]],
-           [[[3, 4],
-             [6, 7]],
-            [[4, 5],
-             [7, 8]]]])
-
-    Or to create non-overlapping windows, but only along the first dimension: \n
-    >>> rolling_window(a, (2,0), asteps=(2,1))
-    array([[[0, 3],
-            [1, 4],
-            [2, 5]]])
-
-    Note that the 0 is discared, so that the output dimension is 3: \n
-    >>> rolling_window(a, (2,0), asteps=(2,1)).shape
-    (1, 3, 2)
-
-    This is useful for example to calculate the maximum in all (overlapping) \n
-    2x2 submatrixes: \n
-    >>> rolling_window(a, (2,2)).max((2,3))
-    array([[4, 5],
-           [7, 8]])
-
-    Or delay embedding (3D embedding with delay 2): \n
-    >>> x = np.arange(10)
-    >>> rolling_window(x, 3, wsteps=2)
-    array([[0, 2, 4],
-           [1, 3, 5],
-           [2, 4, 6],
-           [3, 5, 7],
-           [4, 6, 8],
-           [5, 7, 9]])
     """
     array = np.asarray(array)
     orig_shape = np.asarray(array.shape)
@@ -202,16 +139,15 @@ def tile_array(array, xsize=512, ysize=512, overlap=0.1, padding=True):
     :param ysize: Ysize of tiles (Integer).
     :param overlap: Overlap of tiles between 0.0 and 1.0 (Float).
     :param padding: Pad array before tiling it to ensure that the whole array is used (Boolean).
-    :returns: Numpy array of shape(tiles, rows, cols, bands) (Ndarray)
+    :returns: Numpy array of shape(tiles, rows, cols, bands) (Ndarray).
     """
     # get dtype, rows, cols, bands and dtype from first file
     dtype = array.dtype
     rows = array.shape[0]
     cols = array.shape[1]
-    if array.ndim == 3:
-        bands = array.shape[2]
-    elif array.ndim == 2:
-        bands = 1
+    if array.ndim == 2:
+        array = np.expand_dims(array, 2)
+    bands = array.shape[2]
 
     # get steps
     xsteps = int(xsize - (xsize * overlap))

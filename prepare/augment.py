@@ -32,12 +32,7 @@ def aug_seq_geometry(xsize, ysize):
 
 
 def run(
-    img_dir,
-    msk_dir,
-    fda_ref_dir=None,
-    naugs=1,
-    dem_in_bands=False,
-    seed=0,
+    img_dir, msk_dir, fda_ref_dir=None, naugs=1, dem_in_bands=False, seed=0,
 ):
     """Augments training data.
     """
@@ -56,7 +51,6 @@ def run(
         augmentation_seq_radiometry = aug_seq_radiometry()
         augmentation_seq_geometry = aug_seq_geometry(xsize=img.shape[0], ysize=img.shape[1])
 
-        # TODO: support n_augs<1 to apply augmentation only to a random subset of images
         for n in range(len(naugs)):
             if dem_in_bands is True:
                 # augment radiometry (exclude dem band for this)
@@ -77,35 +71,6 @@ def run(
 
             # save results
             tiff.imsave(
-                img_dir + str(img_files[i].stem) + "_aug" + str(n) + ".tif",
-                img_aug,
-                planarconfig="contig",
+                img_dir + str(img_files[i].stem) + "_aug" + str(n) + ".tif", img_aug, planarconfig="contig",
             )
             tiff.imsave(msk_dir + str(msk_files[i].stem) + "_aug" + str(n) + ".tif", msk_aug)
-
-            if fda_ref_dir:
-                # load random reference image for augmentation
-                # NOTE: reference image needs to be of same shape and scaled like this image
-                fda_ref_file = random.choice(fda_ref_files)
-                img_ref = tiff.imread(fda_ref_file)
-
-                # define augmentation sequence
-                augmentation_seq_fda = al.Compose([al.FDA([img_ref], p=1, beta_limit=0.001, read_fn=lambda x: x)])
-
-                if dem_in_bands is True:
-                    # apply FDA augmentation to target image (exclude dem band for this)
-                    img_aug = aug_fda(image=img[:, :, :-1])["image"]
-                    img_aug = np.append(img_aug, img[:, :, -1:], axis=2)
-                else:
-                    img_aug = aug_fda(image=img)["image"]
-
-                # save augmented image and mask
-                tiff.imsave(
-                    img_dir + str(img_files[i].stem)[:-4] + "aug_fda" + str(n) + ".tif",
-                    img_aug,
-                    planarconfig="contig",
-                )
-                tiff.imsave(
-                    msk_dir + str(msk_files[i].stem)[:-4] + "aug_fda" + str(n) + ".tif",
-                    msk_aug,
-                )

@@ -1,17 +1,16 @@
 [GENERAL]
-NUM_THREADS = 8
-SEED = 666
+DATA_DIR = "/media/datadrive/Documents/papers/Journal2021_DataS1S2Water_TOFINISH/s1s2_water/data"
 
 [SPLIT]
-DATA_DIR = "/path/to/dataset_directory"
 SENSOR = "s2"
-TILE_SHAPE = (256, 256)
+TILE_SHAPE = [256, 256]
 IMG_BANDS_IDX = [0, 1, 2, 3, 4, 5]
-DEM = true
-OUT_DIR = "/path/to/output_directory"
+SLOPE = false
+EXCLUDE_NODATA = false
+OUT_DIR = "/media/datadrive/Documents/papers/Journal2021_DataS1S2Water_TOFINISH/s1s2_water/tiles"
 
 [AUGMENT]
-IMG_DIR = "/path/to/image_directory"
-MSK_DIR = "/path/to/mask_directory"
+IMG_DIR = "/media/datadrive/Documents/papers/Journal2021_DataS1S2Water_TOFINISH/s1s2_water/tiles/train/img"
+MSK_DIR = "/media/datadrive/Documents/papers/Journal2021_DataS1S2Water_TOFINISH/s1s2_water/tiles/train/msk"
 NAUGS = 1
-DEM_IN_BANDS = true
+SLOPE_IN_BANDS = false
