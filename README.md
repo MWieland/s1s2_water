@@ -1,12 +1,11 @@
 # s1s2_water
+This repository refers to the [PUBLIC s1s2_water dataset stored on Zenodo](...), which contains less samples than our [internal s1s2_water dataset](...).
+
 TODO: add here a general dataset description and link to our paper.
 
 > If you use our dataset please cite the following publication ...
 
 ## TODOs
-- resample slope
-- test augmentation
-- add docker file (with simple baseimage)
 - implement and test download from Zenodo
 - discuss with Florian were to publish this repo (part of ukis-data-tutorials -> make this one more general by removing reference to Geoservice)
 
@@ -49,4 +48,5 @@ $ poetry install
 #### Docker
 ```shell
 $ docker build -f entrypoint.Dockerfile --tag s1s2_water --network=host .
+$ docker run --network=host --rm -v /media/datadrive/Datasets/referencedata/ikonos_ida/:/scratch/ s1s2_water --split --augment --settings /scratch/settings.toml
 ```

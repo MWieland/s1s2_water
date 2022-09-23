@@ -7,20 +7,10 @@ from pathlib import Path
 
 
 def aug_seq_radiometry():
-    """defines augmentation sequence for general case (radiometric transformations)
-    NOTE: Albumentations supports two data types that describe the intensity of pixels: - np.uint8, an unsigned 8-bit
-    integer that can define values between 0 and 255. - np.float32, a floating-point number with single precision.
-    For np.float32 input, Albumentations expects that value will lie in the range between 0.0 and 1.0.
-    """
     return al.Compose([al.RandomBrightnessContrast(brightness_limit=(-0.2, 0.2), contrast_limit=(-0.1, 0.1), p=1.0)])
 
 
 def aug_seq_geometry(xsize, ysize):
-    """defines augmentation sequence for general case (geometric transformations)
-    NOTE: Albumentations supports two data types that describe the intensity of pixels: - np.uint8, an unsigned 8-bit
-    integer that can define values between 0 and 255. - np.float32, a floating-point number with single precision.
-    For np.float32 input, Albumentations expects that value will lie in the range between 0.0 and 1.0.
-    """
     return al.Compose(
         [
             al.RandomRotate90(p=1.0),
@@ -31,30 +21,22 @@ def aug_seq_geometry(xsize, ysize):
     )
 
 
-def run(
-    img_dir, msk_dir, fda_ref_dir=None, naugs=1, dem_in_bands=False, seed=0,
-):
-    """Augments training data.
-    """
-    # get input files
+def run(img_dir, msk_dir, naugs=1, slope_in_bands=False):
+    logging.info("Augmenting samples")
+
     img_files = sorted(Path(img_dir).glob("*.tif"))
     msk_files = sorted(Path(msk_dir).glob("*.tif"))
-    if fda_ref_dir:
-        fda_ref_files = sorted(Path(fda_ref_dir).glob("*.tif"))
 
     for i in range(len(img_files)):
-        # load image and mask
         img = tiff.imread(img_files[i])
         msk = tiff.imread(msk_files[i])
 
-        # define augmentation sequences
         augmentation_seq_radiometry = aug_seq_radiometry()
         augmentation_seq_geometry = aug_seq_geometry(xsize=img.shape[0], ysize=img.shape[1])
 
-        for n in range(len(naugs)):
-            if dem_in_bands is True:
+        for n in range(naugs):
+            if slope_in_bands is True:
                 # augment radiometry (exclude dem band for this)
-                # NOTE: we do not want dem band (slope) values to be augmented - only image bands
                 content = {"image": img[:, :, :-1], "mask": msk}
                 augmented = augmentation_seq_radiometry(**content)
                 img_aug, msk_aug = augmented["image"], augmented["mask"]
@@ -69,8 +51,6 @@ def run(
             augmented = augmentation_seq_geometry(**content)
             img_aug, msk_aug = augmented["image"], augmented["mask"]
 
-            # save results
-            tiff.imsave(
-                img_dir + str(img_files[i].stem) + "_aug" + str(n) + ".tif", img_aug, planarconfig="contig",
-            )
-            tiff.imsave(msk_dir + str(msk_files[i].stem) + "_aug" + str(n) + ".tif", msk_aug)
+            tiff.imsave(Path(img_dir) / f"{img_files[i].stem}_aug_{n}.tif", img_aug, planarconfig="contig")
+            tiff.imsave(Path(msk_dir) / f"{msk_files[i].stem}_aug_{n}.tif", msk_aug)
+

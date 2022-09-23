@@ -1,0 +1,5 @@
+*.md
+*.rst
+.git
+data/*
+tiles/*

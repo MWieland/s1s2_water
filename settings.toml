@@ -1,16 +1,16 @@
 [GENERAL]
-DATA_DIR = "/media/datadrive/Documents/papers/Journal2021_DataS1S2Water_TOFINISH/s1s2_water/data"
+DATA_DIR = "/scratch/data"
 
 [SPLIT]
 SENSOR = "s2"
 TILE_SHAPE = [256, 256]
 IMG_BANDS_IDX = [0, 1, 2, 3, 4, 5]
-SLOPE = false
-EXCLUDE_NODATA = false
-OUT_DIR = "/media/datadrive/Documents/papers/Journal2021_DataS1S2Water_TOFINISH/s1s2_water/tiles"
+SLOPE = true
+EXCLUDE_NODATA = true
+OUT_DIR = "/scratch/tiles"
 
 [AUGMENT]
-IMG_DIR = "/media/datadrive/Documents/papers/Journal2021_DataS1S2Water_TOFINISH/s1s2_water/tiles/train/img"
-MSK_DIR = "/media/datadrive/Documents/papers/Journal2021_DataS1S2Water_TOFINISH/s1s2_water/tiles/train/msk"
+IMG_DIR = "/scratch/tiles/val/img"
+MSK_DIR = "/scratch/tiles/val/msk"
 NAUGS = 1
-SLOPE_IN_BANDS = false
+SLOPE_IN_BANDS = true

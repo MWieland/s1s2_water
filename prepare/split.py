@@ -7,6 +7,7 @@ import tqdm
 
 from pathlib import Path
 from prepare.utils import scale_min_max, tile_array
+from ukis_pysat.raster import Image
 
 
 def run(data_dir, out_dir, sensor="s1", tile_shape=(256, 256), img_bands_idx=[0, 1], slope=False, exclude_nodata=False):
@@ -42,21 +43,20 @@ def run(data_dir, out_dir, sensor="s1", tile_shape=(256, 256), img_bands_idx=[0,
         slope_file = Path(data_dir) / Path(subdir) / Path(item["assets"]["copdem30_slope"]["href"]).name
         img_file = Path(data_dir) / Path(subdir) / Path(item["assets"][f"{sensor}_img"]["href"]).name
 
-        msk = tiff.imread(msk_file)
-        valid = tiff.imread(valid_file)
-        slope = tiff.imread(slope_file) if slope else None
-        img = tiff.imread(img_file)
-        img_scaled = scale_min_max(img[:, :, img_bands_idx], min=scale_min, max=scale_max)
+        msk = Image(data=msk_file, dimorder="last")
+        valid = Image(data=valid_file, dimorder="last")
+        slope = Image(data=slope_file, dimorder="last") if slope else None
+        img = Image(data=img_file, dimorder="last")
+        img_scaled = scale_min_max(img.arr[:, :, img_bands_idx], min=scale_min, max=scale_max)
 
         if slope:
-            # TODO: resample slope with numpy
-            # slope_img.warp(resampling_method=2, dst_crs=img.dataset.crs, target_align=img, num_threads=num_threads)
-            img_scaled = np.append(img_scaled, slope, axis=2)
+            slope.warp(resampling_method=2, dst_crs=img.dataset.crs, target_align=img)
+            img_scaled = np.append(img_scaled, slope.arr, axis=2)
 
         img_tiles = tile_array(img_scaled, xsize=tile_shape[0], ysize=tile_shape[1], overlap=0.0, padding=False)
-        msk_tiles = tile_array(msk, xsize=tile_shape[0], ysize=tile_shape[1], overlap=0.0, padding=False)
+        msk_tiles = tile_array(msk.arr, xsize=tile_shape[0], ysize=tile_shape[1], overlap=0.0, padding=False)
         valid_tiles = (
-            tile_array(valid, xsize=tile_shape[0], ysize=tile_shape[1], overlap=0.0, padding=False)
+            tile_array(valid.arr, xsize=tile_shape[0], ysize=tile_shape[1], overlap=0.0, padding=False)
             if exclude_nodata
             else None
         )
@@ -71,4 +71,3 @@ def run(data_dir, out_dir, sensor="s1", tile_shape=(256, 256), img_bands_idx=[0,
                 planarconfig="contig",
             )
             tiff.imsave(Path(out_dir) / f"{split}/msk/{Path(msk_file).stem}_{j}.tif", msk_tiles[j, :, :, :])
-        exit()
