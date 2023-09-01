@@ -1,16 +1,13 @@
-[GENERAL]
-DATA_DIR = "/scratch/data"
+SENSOR = "s2"                           # prepare Sentinel-1 or Sentinel-2 data ["s1", "s2"]
+TILE_SHAPE = [256, 256]                 # desired tile shape
+IMG_BANDS_IDX = [0, 1, 2, 3, 4, 5]      # desired image band combination
+SLOPE = true                            # append slope band to image bands
+EXCLUDE_NODATA = true                   # exclude tiles with nodata values
+DATA_DIR = "/mnt/data1/Datasets/refdata_original/data_s1s2_water_public/s1s2_water/data"                      # data directory that holds the original images
+OUT_DIR = "/mnt/data1/Datasets/refdata_original/data_s1s2_water_public/s1s2_water/tiles"                       # output directory that stores the prepared train, val and test tiles
 
-[SPLIT]
-SENSOR = "s2"
-TILE_SHAPE = [256, 256]
-IMG_BANDS_IDX = [0, 1, 2, 3, 4, 5]
-SLOPE = true
-EXCLUDE_NODATA = true
-OUT_DIR = "/scratch/tiles"
+# Sentinel-1 image bands
+# {"VV": 0, "VH": 1}
 
-[AUGMENT]
-IMG_DIR = "/scratch/tiles/val/img"
-MSK_DIR = "/scratch/tiles/val/msk"
-NAUGS = 1
-SLOPE_IN_BANDS = true
+# Sentinel-2 image bands
+# {"Blue": 0, "Green": 1, "Red": 2, "NIR": 3, "SWIR1": 4, "SWIR2": 5}

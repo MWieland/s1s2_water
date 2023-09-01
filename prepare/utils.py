@@ -1,11 +1,9 @@
-import json
 import numpy as np
-import random
 
 
 def scale_min_max(array, min, max):
     """Scales an image from range [min, max] to [0,1] with fixed values for min and max.
-    
+
     :param array: array to which the rolling window is applied (array_like).
     :param min: minimum value (int).
     :param max: maximum value (int).
