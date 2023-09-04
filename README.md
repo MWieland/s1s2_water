@@ -10,4 +10,4 @@ The following pre-print article describes the dataset:
 A peer-reviewed article is currently under review in IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing.
 
 ## Dataset access
-The dataset (~170 GB) will be freely available for download from Zenodo once the peer-reviewed article has been published.
+The dataset (~170 GB) will be freely available for download from [Zenodo](https://zenodo.org) once the peer-reviewed article has been published.
