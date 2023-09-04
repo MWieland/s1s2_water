@@ -45,7 +45,7 @@ Each file follows the naming scheme sentinel12_SENSOR_ID_LAYER.tif (e.g. `sentin
 
 | Sensor | Layer |Description | Values | Format | Bands |
 | - | - | - | - | - | - |
-| S1 | IMG | Sentinel-1 image <br> GRD product | Unit: dB (scaled by 10000) | GeoTIFF <br> 10980 x 10980 px <br> 2 bands <br> UInt16 | 0: VV <br> 1: VH
+| S1 | IMG | Sentinel-1 image <br> GRD product | Unit: dB | GeoTIFF <br> 10980 x 10980 px <br> 2 bands <br> Float32 | 0: VV <br> 1: VH
 | S2 | IMG | Sentinel-2 image <br> L1C product | Unit: TOA reflectance (scaled by 10000) | GeoTIFF <br> 10980 x 10980 px <br> 6 bands <br> UInt16 | 0: Blue <br> 1: Green <br> 2: Red <br> 3: NIR <br> 4: SWIR1 <br> 5: SWIR2
 | S1 / S2 | MSK | Annotation mask <br> Hand-labelled water mask | 0: No Water <br> 1: Water | GeoTIFF <br> 10980 x 10980 px <br> 1 band <br> UInt8 | 0: Water mask
 | S1 / S2 | VALID | Valid pixel mask <br> Hand-labelled valid pixel mask | 0: Invalid (cloud, cloud-shadow, nodata) <br> 1: Valid | GeoTIFF <br> 10980 x 10980 px <br> 1 band <br> UInt8 | 0: Valid mask
