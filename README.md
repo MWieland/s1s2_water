@@ -1,17 +1,47 @@
 # S1S2-Water: A global dataset for semantic segmentation of water bodies from Sentinel-1 and Sentinel-2 satellite images
-This repository provides tools to work with the [S1S2-Water dataset](ZENODO-LINK).
+This repository provides tools to work with the [S1S2-Water dataset](https://zenodo.org/deposit/8314175).
 
-[S1S2-Water dataset](ZENODO-LINK) is a global reference dataset for training, validation and testing of convolutional neural networks for semantic segmentation of surface water bodies in publicly available Sentinel-1 and Sentinel-2 satellite images. The dataset consists of 65 triplets of Sentinel-1 and Sentinel-2 images with quality checked binary water mask. Samples are drawn globally on the basis of the Sentinel-2 tile-grid (100 x 100 km) under consideration of pre-dominant landcover and availability of water bodies. Each sample is complemented with STAC-compliant metadata and Digital Elevation Model (DEM) raster from the Copernicus DEM.
+[S1S2-Water dataset](https://zenodo.org/deposit/8314175) is a global reference dataset for training, validation and testing of convolutional neural networks for semantic segmentation of surface water bodies in publicly available Sentinel-1 and Sentinel-2 satellite images. The dataset consists of 65 triplets of Sentinel-1 and Sentinel-2 images with quality checked binary water mask. Samples are drawn globally on the basis of the Sentinel-2 tile-grid (100 x 100 km) under consideration of pre-dominant landcover and availability of water bodies. Each sample is complemented with STAC-compliant metadata and Digital Elevation Model (DEM) raster from the Copernicus DEM.
 
 If you use our dataset please cite the following publication:
 
 > Wieland, M., Fichtner, F., Martinis, S., Krullikowski, C., Plank, S., Motagh, M. (in review). S1S2-Water: A global dataset for semantic segmentation of water bodies from Sentinel-1 and Sentinel-2 satellite images. Journal of Selected Topics in Applied Earth Observations and Remote Sensing.
 
 ## Dataset access
-The dataset (~170 GB) is available for download at: ZENODO-LINK
+The dataset (~170 GB) is available for download at: https://zenodo.org/deposit/8314175
+
+Download the dataset parts and extract them into a single data directory as follows.
+
+```
+.
+└── data/
+    ├── 1/
+    │   ├── sentinel12_copdem30_1_elevation.tif
+    │   ├── sentinel12_copdem30_1_slope.tif
+    │   ├── sentinel12_s1_1_img.tif
+    │   ├── sentinel12_s1_1_msk.tif
+    │   ├── sentinel12_s1_1_valid.tif
+    │   ├── sentinel12_s2_1_img.tif
+    │   ├── sentinel12_s2_1_msk.tif
+    │   ├── sentinel12_s2_1_valid.tif
+    │   └── sentinel12_1_meta.json
+    ├── 5/
+    │   ├── sentinel12_copdem30_5_elevation.tif
+    │   ├── sentinel12_copdem30_5_slope.tif
+    │   ├── sentinel12_s1_5_img.tif
+    │   ├── sentinel12_s1_5_msk.tif
+    │   ├── sentinel12_s1_5_valid.tif
+    │   ├── sentinel12_s2_5_img.tif
+    │   ├── sentinel12_s2_5_msk.tif
+    │   ├── sentinel12_s2_5_valid.tif
+    │   └── sentinel12_5_meta.json
+    ├── .../
+    │   └── ...
+    └── catalog.json
+```
 
 ## Dataset information
-Each file follows the naming scheme sentinel12_SENSOR_SAMPLE-ID_LAYER.tif (e.g. `sentinel12_s1_5_img.tif`). Raster layers are stored as Cloud Optimized GeoTIFF (COG) and are projected to Universal Transverse Mercator (UTM).
+Each file follows the naming scheme sentinel12_SENSOR_ID_LAYER.tif (e.g. `sentinel12_s1_5_img.tif`). Raster layers are stored as Cloud Optimized GeoTIFF (COG) and are projected to Universal Transverse Mercator (UTM).
 
 | Sensor | Layer |Description | Values | Format | Bands |
 | - | - | - | - | - | - |
@@ -21,15 +51,18 @@ Each file follows the naming scheme sentinel12_SENSOR_SAMPLE-ID_LAYER.tif (e.g. 
 | S1 / S2 | VALID | Valid pixel mask <br> Hand-labelled valid pixel mask | 0: Invalid (cloud, cloud-shadow, nodata) <br> 1: Valid | GeoTIFF <br> 10980 x 10980 px <br> 1 band <br> UInt8 | 0: Valid mask
 | COPDEM30 | ELEVATION | Copernicus DEM elevation | Unit: Meters | GeoTIFF <br> 3660 x 3660 px <br> 1 band <br> Float32 | 0: Elevation
 | COPDEM30 | SLOPE | Copernicus DEM slope | Unit: Degrees | GeoTIFF <br> 3660 x 3660 px <br> 1 band <br> Float32 | 0: Slope
+| N.a. | META | METADATA | STAC metadata item | JSON | N.a.
 
 ## Data preparation
-The following splits images and masks for a desired sensor (Sentinel-1 or Sentinel-2) into training, validation and testing tiles with predefined shape and band combination (**--split**). Slope information can be appended to the image band stack if required.
+Make sure to download the dataset as described above. Clone this repository, adjust [settings.toml](settings.toml) and run [s1s2_water.py](s1s2_water.py) to prepare the dataset according to your desired settings. 
+
+The following splits images and masks for a specific sensor (Sentinel-1 or Sentinel-2) into training, validation and testing tiles with predefined shape and band combination (**--split**). Slope information can be appended to the image band stack if required.
 
 ```python
 $ python s1s2_water.py --settings settings.toml
 ```
 
-Data preparation parameters are defined in a settings TOML file (**--settings**)
+Data preparation parameters are defined in a [settings TOML file](settings.toml) (**--settings**)
 
 ```toml
 SENSOR = "s2"                           # prepare Sentinel-1 or Sentinel-2 data ["s1", "s2"]

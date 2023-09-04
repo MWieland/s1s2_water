@@ -3,8 +3,8 @@ TILE_SHAPE = [256, 256]                 # desired tile shape
 IMG_BANDS_IDX = [0, 1, 2, 3, 4, 5]      # desired image band combination
 SLOPE = true                            # append slope band to image bands
 EXCLUDE_NODATA = true                   # exclude tiles with nodata values
-DATA_DIR = "/mnt/data1/Datasets/refdata_original/data_s1s2_water_public/s1s2_water/data"                      # data directory that holds the original images
-OUT_DIR = "/mnt/data1/Datasets/refdata_original/data_s1s2_water_public/s1s2_water/tiles"                       # output directory that stores the prepared train, val and test tiles
+DATA_DIR = "/path/to/data_directory"    # data directory that holds the original images
+OUT_DIR = "/path/to/output_directory"   # output directory that stores the prepared train, val and test tiles
 
 # Sentinel-1 image bands
 # {"VV": 0, "VH": 1}
