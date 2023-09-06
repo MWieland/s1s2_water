@@ -5,9 +5,9 @@ This repository provides tools to work with the [S1S2-Water dataset]().
 
 The following pre-print article describes the dataset:
 
-> Wieland, M., Fichtner, F., Martinis, S., Krullikowski, C., Plank, S., Motagh, M. (2023). S1S2-Water: A global dataset for semantic segmentation of water bodies from Sentinel-1 and Sentinel-2 satellite images. TechRxiv. doi: .
+> Wieland, M., Fichtner, F., Martinis, S., Krullikowski, C., Plank, S., Motagh, M. (2023). S1S2-Water: A global dataset for semantic segmentation of water bodies from Sentinel-1 and Sentinel-2 satellite images. *TechRxiv*, https://dx.doi.org/10.36227/techrxiv.24081582.v1.
 
 A peer-reviewed article is currently under review in IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing.
 
 ## Dataset access
-The dataset (~170 GB) will be freely available for download from [Zenodo](https://zenodo.org) once the peer-reviewed article has been published.
+The dataset (~170 GB) will be freely available for download from [Zenodo](https://zenodo.org) once the peer-reviewed article has been published. Upon publication of the article we will also release the corresponding code to discover and prepare the dataset.
