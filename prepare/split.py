@@ -20,9 +20,9 @@ def run(data_dir, out_dir, sensor="s1", tile_shape=(256, 256), img_bands_idx=[0,
         raise NotImplementedError("Cannot find items.json file in data_dir")
 
     if sensor == "s1":
-        scale_min, scale_max = 0, 400
+        scale_min, scale_max = 0, 100.0
     elif sensor == "s2":
-        scale_min, scale_max = 0, 10000
+        scale_min, scale_max = 0, 10000.0
     else:
         raise NotImplementedError(f"Sensor {str(sensor)} not supported ['s1', 's2']")
 

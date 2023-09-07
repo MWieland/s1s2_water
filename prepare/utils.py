@@ -1,42 +1,14 @@
 import numpy as np
 
 
-def scale_min_max(array, min, max):
-    """Scales an image from range [min, max] to [0,1] with fixed values for min and max.
-
-    :param array: array to which the rolling window is applied (array_like).
-    :param min: minimum value (int).
-    :param max: maximum value (int).
-    :returns: Scaled array (array_like).
-    """
+def scale_min_max(array, min=0, max=10000):
     bands = []
     for i in range(array.shape[2]):
-        bands.append(((np.clip(array[:, :, i], min, max).astype(np.float32) - min) / (max - min + 1e-8)))
+        bands.append(array[:, :, i].astype(np.float32) / max)
     return np.dstack(bands)
 
 
 def rolling_window(array, window=(0,), asteps=None, wsteps=None, axes=None, toend=True):
-    """Applies a rolling (moving) window to an ndarray.
-
-    :param array: array to which the rolling window is applied (array_like).
-    :param window: Either a single integer to create a window of only the last axis or a
-        tuple to create it for the last len(window) axes. 0 can be used as a to ignore a
-        dimension in the window (int or tuple).
-    :param asteps: aligned at the last axis, new steps for the original array, ie. for
-        creation of non-overlapping windows (tuple).
-    :param wsteps: steps for the added window dimensions. These can be 0 to repeat values
-        along the axis (int or tuple (same size as window)).
-    :param axes: if given, must have the same size as window. In this case window is
-        interpreted as the size in the dimension given by axes. IE. a window
-        of (2, 1) is equivalent to window=2 and axis=-2 (int or tuple)
-    :param toend: if False, the new dimensions are right after the corresponding original
-        dimension, instead of at the end of the array. Adding the new axes at the
-        end makes it easier to get the neighborhood, however toend=False will give
-        a more intuitive result if you view the whole array (bool).
-    :returns: a view on `array` which is smaller to fit the windows and has windows added
-        dimensions (0s not counting), ie. every point of `array` is an array of size
-        window. (ndarray).
-    """
     array = np.asarray(array)
     orig_shape = np.asarray(array.shape)
     window = np.atleast_1d(window).astype(int)
@@ -129,16 +101,6 @@ def rolling_window(array, window=(0,), asteps=None, wsteps=None, axes=None, toen
 
 
 def tile_array(array, xsize=512, ysize=512, overlap=0.1, padding=True):
-    """This method splits an ndarray into equally sized tiles
-    with overlap.
-
-    :param array: Numpy array of shape (rows, cols, bands) (Ndarray).
-    :param xsize: Xsize of tiles (Integer).
-    :param ysize: Ysize of tiles (Integer).
-    :param overlap: Overlap of tiles between 0.0 and 1.0 (Float).
-    :param padding: Pad array before tiling it to ensure that the whole array is used (Boolean).
-    :returns: Numpy array of shape(tiles, rows, cols, bands) (Ndarray).
-    """
     # get dtype, rows, cols, bands and dtype from first file
     dtype = array.dtype
     rows = array.shape[0]
