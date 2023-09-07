@@ -82,6 +82,6 @@ OUT_DIR = "/path/to/output_directory"   # output directory that stores the prepa
 
 ## Installation
 ```shell
-$ conda env create --name s1s2_water --file environment.yml
+$ conda env create --file environment.yaml
 $ conda activate s1s2_water
 ```
