@@ -9,9 +9,6 @@ parser = argparse.ArgumentParser(
     description="Prepare s1s2_water images and masks for train, validation and test",
     formatter_class=argparse.RawTextHelpFormatter,
 )
-parser.add_argument(
-    "--split", action="store_true", help=f"Split images and masks into train, validation and test tiles", required=False
-)
 parser.add_argument("--settings", help=f"Path to TOML file with settings", required=True)
 args = parser.parse_args()
 
@@ -21,13 +18,12 @@ if Path(args.settings).is_file():
 else:
     raise Exception("Cannot find settings file.")
 
-if args.split:
-    run_split(
-        data_dir=settings["DATA_DIR"],
-        out_dir=settings["OUT_DIR"],
-        sensor=settings["SENSOR"],
-        tile_shape=settings["TILE_SHAPE"],
-        img_bands_idx=settings["IMG_BANDS_IDX"],
-        slope=settings["SLOPE"],
-        exclude_nodata=settings["EXCLUDE_NODATA"],
-    )
+run_split(
+    data_dir=settings["DATA_DIR"],
+    out_dir=settings["OUT_DIR"],
+    sensor=settings["SENSOR"],
+    tile_shape=settings["TILE_SHAPE"],
+    img_bands_idx=settings["IMG_BANDS_IDX"],
+    slope=settings["SLOPE"],
+    exclude_nodata=settings["EXCLUDE_NODATA"],
+)

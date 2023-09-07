@@ -7,17 +7,17 @@ import tqdm
 
 from pathlib import Path
 from prepare.utils import scale_min_max, tile_array
+from pystac_client import Client
 from ukis_pysat.raster import Image
 
 
 def run(data_dir, out_dir, sensor="s1", tile_shape=(256, 256), img_bands_idx=[0, 1], slope=False, exclude_nodata=False):
     logging.info("Splitting training samples")
 
-    if Path(Path(data_dir) / "items.json").is_file:
-        with open(Path(Path(data_dir) / "items.json")) as f:
-            items = json.load(f)
+    if Path(Path(data_dir) / "catalog.json").is_file:
+        catalog = Client.open(Path(data_dir) / "catalog.json")
     else:
-        raise NotImplementedError("Cannot find items.json file in data_dir")
+        raise NotImplementedError("Cannot find catalog.json file in data_dir")
 
     if sensor == "s1":
         scale_min, scale_max = 0, 100.0
@@ -34,8 +34,9 @@ def run(data_dir, out_dir, sensor="s1", tile_shape=(256, 256), img_bands_idx=[0,
     Path(Path(out_dir) / "val/img").mkdir(parents=True, exist_ok=True)
     Path(Path(out_dir) / "val/msk").mkdir(parents=True, exist_ok=True)
 
+    items = [item.to_dict() for item in catalog.get_all_items()]
     sys.stdout.flush()
-    for i, item in tqdm.tqdm(enumerate(items["features"]), total=len(items["features"])):
+    for i, item in tqdm.tqdm(enumerate(items), total=len(items)):
         split = item["properties"]["split"]
         subdir = Path(item["assets"][f"{sensor}_img"]["href"]).parent.name
         msk_file = Path(data_dir) / Path(subdir) / Path(item["assets"][f"{sensor}_msk"]["href"]).name

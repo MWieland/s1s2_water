@@ -56,7 +56,7 @@ Each file follows the naming scheme sentinel12_SENSOR_ID_LAYER.tif (e.g. `sentin
 ## Data preparation
 Make sure to download the dataset as described above. Clone this repository, adjust [settings.toml](settings.toml) and run [s1s2_water.py](s1s2_water.py) to prepare the dataset according to your desired settings. 
 
-The following splits images and masks for a specific sensor (Sentinel-1 or Sentinel-2) into training, validation and testing tiles with predefined shape and band combination (**--split**). Slope information can be appended to the image band stack if required.
+The following splits images and masks for a specific sensor (Sentinel-1 or Sentinel-2) into training, validation and testing tiles with predefined shape and band combination. Slope information can be appended to the image band stack if required.
 
 ```python
 $ python s1s2_water.py --settings settings.toml
