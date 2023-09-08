@@ -49,8 +49,8 @@ Each file follows the naming scheme sentinel12_SENSOR_ID_LAYER.tif (e.g. `sentin
 | S2 | IMG | Sentinel-2 image <br> L1C product | Unit: TOA reflectance (scaled by factor 10000) | GeoTIFF <br> 10980 x 10980 px <br> 6 bands <br> UInt16 | 0: Blue <br> 1: Green <br> 2: Red <br> 3: NIR <br> 4: SWIR1 <br> 5: SWIR2
 | S1 / S2 | MSK | Annotation mask <br> Hand-labelled water mask | 0: No Water <br> 1: Water | GeoTIFF <br> 10980 x 10980 px <br> 1 band <br> UInt8 | 0: Water mask
 | S1 / S2 | VALID | Valid pixel mask <br> Hand-labelled valid pixel mask | 0: Invalid (cloud, cloud-shadow, nodata) <br> 1: Valid | GeoTIFF <br> 10980 x 10980 px <br> 1 band <br> UInt8 | 0: Valid mask
-| COPDEM30 | ELEVATION | Copernicus DEM elevation | Unit: Meters | GeoTIFF <br> 3660 x 3660 px <br> 1 band <br> Float32 | 0: Elevation
-| COPDEM30 | SLOPE | Copernicus DEM slope | Unit: Degrees | GeoTIFF <br> 3660 x 3660 px <br> 1 band <br> Float32 | 0: Slope
+| COPDEM30 | ELEVATION | Copernicus DEM elevation | Unit: Meters | GeoTIFF <br> 3660 x 3660 px <br> 1 band <br> Int16 | 0: Elevation
+| COPDEM30 | SLOPE | Copernicus DEM slope | Unit: Degrees | GeoTIFF <br> 3660 x 3660 px <br> 1 band <br> Int16 | 0: Slope
 | N.a. | META | METADATA | STAC metadata item | JSON | N.a.
 
 ## Data preparation
