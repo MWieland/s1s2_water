@@ -1,0 +1,13 @@
+SENSOR = "s2"                           # prepare Sentinel-1 or Sentinel-2 data ["s1", "s2"]
+TILE_SHAPE = [256, 256]                 # desired tile shape
+IMG_BANDS_IDX = [0, 1, 2, 3, 4, 5]      # desired image band combination
+SLOPE = true                            # append slope band to image bands
+EXCLUDE_NODATA = true                   # exclude tiles with nodata values
+DATA_DIR = "/path/to/data_directory"    # data directory that holds the original images
+OUT_DIR = "/path/to/output_directory"   # output directory that stores the prepared train, val and test tiles
+
+# Sentinel-1 image bands
+# {"VV": 0, "VH": 1}
+
+# Sentinel-2 image bands
+# {"Blue": 0, "Green": 1, "Red": 2, "NIR": 3, "SWIR1": 4, "SWIR2": 5}

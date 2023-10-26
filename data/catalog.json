@@ -1,0 +1,410 @@
+{
+    "id": "s1s2_water",
+    "type": "Catalog",
+    "title": "s1s2_water",
+    "stac_version": "1.0.0",
+    "description": "S1S2-Water: A global dataset for semantic segmentation of water bodies from Sentinel-1 and Sentinel-2 satellite images",
+    "links": [
+        {
+            "rel": "root",
+            "href": "./catalog.json",
+            "type": "application/json",
+            "title": "catalog"
+        },
+        {
+            "rel": "self",
+            "href": "./catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./93/sentinel12_93_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./91/sentinel12_91_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./9/sentinel12_9_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./89/sentinel12_89_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./88/sentinel12_88_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./87/sentinel12_87_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./86/sentinel12_86_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./85/sentinel12_85_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./84/sentinel12_84_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./83/sentinel12_83_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./82/sentinel12_82_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./80/sentinel12_80_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./8/sentinel12_8_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./78/sentinel12_78_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./77/sentinel12_77_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./76/sentinel12_76_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./75/sentinel12_75_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./73/sentinel12_73_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./71/sentinel12_71_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./7/sentinel12_7_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./69/sentinel12_69_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./68/sentinel12_68_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./67/sentinel12_67_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./65/sentinel12_65_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./64/sentinel12_64_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./62/sentinel12_62_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./6/sentinel12_6_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./59/sentinel12_59_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./57/sentinel12_57_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./55/sentinel12_55_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./54/sentinel12_54_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./53/sentinel12_53_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./52/sentinel12_52_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./51/sentinel12_51_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./5/sentinel12_5_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./49/sentinel12_49_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./48/sentinel12_48_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./47/sentinel12_47_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./41/sentinel12_41_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./40/sentinel12_40_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./39/sentinel12_39_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./37/sentinel12_37_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./36/sentinel12_36_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./35/sentinel12_35_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./33/sentinel12_33_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./32/sentinel12_32_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./31/sentinel12_31_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./30/sentinel12_30_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./29/sentinel12_29_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./28/sentinel12_28_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./27/sentinel12_27_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./26/sentinel12_26_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./25/sentinel12_25_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./23/sentinel12_23_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./22/sentinel12_22_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./21/sentinel12_21_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./19/sentinel12_19_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./17/sentinel12_17_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./16/sentinel12_16_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./15/sentinel12_15_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./13/sentinel12_13_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./12/sentinel12_12_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./11/sentinel12_11_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./10/sentinel12_10_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        },
+        {
+            "rel": "item",
+            "href": "./1/sentinel12_1_meta.json",
+            "type": "application/json",
+            "title": "metadata"
+        }
+    ]
+}
