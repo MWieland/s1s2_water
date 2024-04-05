@@ -80,6 +80,8 @@ OUT_DIR = "/path/to/output_directory"   # output directory that stores the prepa
 # {"Blue": 0, "Green": 1, "Red": 2, "NIR": 3, "SWIR1": 4, "SWIR2": 5}
 ```
 
+Information on the deployed preprocessing steps for Sentinel-1 imagery can be found in the [SNAP GPT file](prepare/preproc_s1_snap.xml).
+
 ## Installation
 ```shell
 $ conda env create --file environment.yaml
