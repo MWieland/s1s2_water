@@ -1,14 +1,17 @@
 # S1S2-Water: A global dataset for semantic segmentation of water bodies from Sentinel-1 and Sentinel-2 satellite images
-This repository provides tools to work with the [S1S2-Water dataset](https://zenodo.org/records/8314175).
+This repository provides tools to work with the [S1S2-Water dataset](https://zenodo.org/records/11278238).
 
-[S1S2-Water dataset](https://zenodo.org/records/8314175) is a global reference dataset for training, validation and testing of convolutional neural networks for semantic segmentation of surface water bodies in publicly available Sentinel-1 and Sentinel-2 satellite images. The dataset consists of 65 triplets of Sentinel-1 and Sentinel-2 images with quality checked binary water mask. Samples are drawn globally on the basis of the Sentinel-2 tile-grid (100 x 100 km) under consideration of pre-dominant landcover and availability of water bodies. Each sample is complemented with STAC-compliant metadata and Digital Elevation Model (DEM) raster from the Copernicus DEM.
+[S1S2-Water dataset](https://zenodo.org/records/11278238) is a global reference dataset for training, validation and testing of convolutional neural networks for semantic segmentation of surface water bodies in publicly available Sentinel-1 and Sentinel-2 satellite images. The dataset consists of 65 triplets of Sentinel-1 and Sentinel-2 images with quality checked binary water mask. Samples are drawn globally on the basis of the Sentinel-2 tile-grid (100 x 100 km) under consideration of pre-dominant landcover and availability of water bodies. Each sample is complemented with STAC-compliant metadata and Digital Elevation Model (DEM) raster from the Copernicus DEM.
 
 The following pre-print article describes the dataset:
 
 > Wieland, M., Fichtner, F., Martinis, S., Groth, S., Krullikowski, C., Plank, S., Motagh, M. (2023). S1S2-Water: A global dataset for semantic segmentation of water bodies from Sentinel-1 and Sentinel-2 satellite images. *IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing*, doi: [10.1109/JSTARS.2023.3333969](https://dx.doi.org/10.1109/JSTARS.2023.3333969).
+ 
+## Dataset version update (2024-05-24)
+The dataset on Zenodo has been updated to a new version. Sentinel-1 scenes for samples #31 and #59 have been missing in [v1.0.0](https://zenodo.org/records/8314175) and are now included in [v1.0.1](https://zenodo.org/records/11278238) along with all relevant masks and metadata.
 
 ## Dataset access
-The dataset (~170 GB) is available for download at: https://zenodo.org/records/8314175
+The dataset (~170 GB) is available for download at: https://zenodo.org/records/11278238 (v1.0.1)
 
 Download the dataset parts and extract them into a single data directory as follows.
 
